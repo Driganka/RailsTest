@@ -1,0 +1,19 @@
+<% if @post.image? %>
+    <div class="image_wrapper">
+        <%= image_tag post.image_url %>
+    </div>
+<% end %>
+<%= simple_form_for @post do |f| %>
+    <%= f.input :title, placeholder: 'Title', class: 'form-control form-control-lg' %>
+    <%= f.input :body, placeholder: 'BODY OF POST...', class: 'form-control form-control-lg', rows: '10' %>
+    <%= f.input :image, class: 'form-control-file' %>
+    <% if @post.image? %>
+        <div class="form-check">
+            <label class="form-check-label">
+                <%= f.check_box :remove_image, class: 'form-check-input' %>
+                Remove Image
+            </label>
+        </div>
+    <% end %>
+    <%= f.submit 'Create Post', class: 'btn btn-primary btn-lg' %>
+<% end %>
